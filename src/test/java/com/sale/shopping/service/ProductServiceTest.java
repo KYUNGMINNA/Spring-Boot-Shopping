@@ -2,8 +2,10 @@ package com.sale.shopping.service;
 
 
 import com.sale.shopping.model.dto.ProductRequestDTO;
+import com.sale.shopping.model.dto.ProductResponseDTO;
 import com.sale.shopping.model.entity.Product;
 import com.sale.shopping.repository.ProductRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +16,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
@@ -84,6 +92,66 @@ public class ProductServiceTest {
 
         //then
         assertFalse(productRepository.findById(id).isPresent());
+    }
+
+
+    @Test
+    @Transactional(rollbackFor = RuntimeException.class)
+    @DisplayName("서비스 계층 상품 한개 선택 테스트 ")
+    public void selectOneTest(){
+        //given
+        Integer id=1;
+        Product product=Product.builder()
+                .id(id)
+                .productTitle("제목")
+                .productImage("이미지주소")
+                .productContent("내용")
+                .productCount(1000)
+                .productPrice(987654321)
+                .build();
+        Optional<Product> productOp=Optional.of(product);
+
+
+        //stub : findById의 매개변수에 들어가는 값 의미 X
+        when(productRepository.findById(id)).thenReturn(productOp);
+
+
+        //when
+        ProductResponseDTO productResponseDTO=productRepository.findById(id).get().toDTO();
+
+        //then
+        assertEquals(productResponseDTO.getProductTitle(),product.getProductTitle());
+        assertEquals(productResponseDTO.getProductImage(),product.getProductImage());
+        assertEquals(productResponseDTO.getProductContent(),product.getProductContent());
+        assertEquals(productResponseDTO.getProductPrice(),product.getProductPrice());
+        assertEquals(productResponseDTO.getProductCount(),product.getProductCount());
+    }
+    @Test
+    @Transactional(rollbackFor = RuntimeException.class)
+    @DisplayName("서비스 계층 상품 전체 선택 테스트 ")
+    public void selectAllTest() {
+        //given
+        List<Product> products = new ArrayList<>();
+        products.add(Product.builder().id(1).productTitle("제목1").productImage("이미지주소")
+                .productContent("내용").productPrice(987654321).productCount(1000).build());
+
+        products.add(Product.builder().id(1).productTitle("제목2").productImage("이미지주소")
+                .productContent("내용").productPrice(987654321).productCount(1000).build());
+
+        //stub
+        when(productRepository.findAll()).thenReturn(products);
+
+        //when
+        List<ProductResponseDTO> productResponseDTOList=productRepository.findAll().stream()
+                // .map((bookPS) -> bookPS.toDto())
+                .map(Product::toDTO)
+                .collect(Collectors.toList());
+
+        //then
+        assertEquals(productResponseDTOList.get(0).getProductTitle(),"제목1");
+        assertEquals(productResponseDTOList.get(1).getProductTitle(),"제목2");
+
+
     }
 
 
