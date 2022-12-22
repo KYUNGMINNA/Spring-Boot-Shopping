@@ -154,5 +154,37 @@ public class ProductServiceTest {
 
     }
 
+    @Test
+    @Transactional(rollbackFor = RuntimeException.class)
+    @DisplayName("서비스 계층 상품 수정 테스트 ")
+    public void modifyTest() {
+        //given
+        Integer id=1;
+        Product product=Product.builder()
+                .productTitle("제목")
+                .productImage("이미지위치")
+                .productContent("내용")
+                .productPrice(987654321)
+                .productCount(1000)
+                .build();
+        //when(productRepository.save(any())).thenReturn(product);
+        Product productPS=productRepository.save(product);
+
+        String productRequestDTOTitle="수정된제목";
+
+        productPS=Product.builder().productTitle(productRequestDTOTitle).build();
+
+
+        //Optional<Product> prodcutEntity=productRepository.findById(id);
+        //when(productRepository.findById(id)).thenReturn(prodcutEntity);
+
+        assertEquals(productPS.getProductTitle(),productRequestDTOTitle);
+
+
+
+
+
+    }
+
 
 }
