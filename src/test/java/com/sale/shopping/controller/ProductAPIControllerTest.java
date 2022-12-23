@@ -138,4 +138,29 @@ public class ProductAPIControllerTest {
         assertEquals(productTitle3, "제목4");
         assertEquals(productTitle4, "제목5");
     }
+
+
+    @Test
+    @DisplayName("컨트롤러 상품 한 개 조회 테스트 ")
+    public void selectOneTest() throws Exception {
+
+        // given
+        Integer id=1;
+
+
+        // when
+        HttpEntity<String> request = new HttpEntity<>(null, headers);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/product/"+id, HttpMethod.GET, request, String.class);
+
+        // then
+        DocumentContext dc = JsonPath.parse(response.getBody());
+
+        Integer statusCode = dc.read("$.statusCode");
+        String productTitle = dc.read("$.data.productTitle");
+
+
+        assertEquals(statusCode, HttpStatus.OK.value());
+        assertEquals(productTitle, "제목1");
+
+    }
 }
