@@ -163,4 +163,54 @@ public class ProductAPIControllerTest {
         assertEquals(productTitle, "제목1");
 
     }
+
+    @Test
+    @DisplayName("컨트롤러 상품 삭제 테스트 ")
+    public void deleteTest() throws Exception {
+
+        // given
+        Integer id=1;
+
+
+        // when
+        HttpEntity<String> request = new HttpEntity<>(null, headers);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/product/"+id, HttpMethod.DELETE, request, String.class);
+
+        // then
+        DocumentContext dc = JsonPath.parse(response.getBody());
+
+        Integer statusCode = dc.read("$.statusCode");
+
+        assertEquals(statusCode, HttpStatus.OK.value());
+    }
+
+    @Test
+    @DisplayName("컨트롤러 상품 수정 테스트 ")
+    public void modifyTest() throws Exception {
+
+        // given
+        Integer id=1;
+        ProductRequestDTO productRequestDTO=ProductRequestDTO.builder()
+                .productTitle("수정된제목")
+                .productImage("수정된주소")
+                .productContent("수정된내용")
+                .productPrice(123456789)
+                .productCount(9999)
+                .build();;
+
+        String body = objectMapper.writeValueAsString(productRequestDTO);
+
+        // when
+        HttpEntity<String> request = new HttpEntity<>(body, headers);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/product/"+id, HttpMethod.PUT, request, String.class);
+
+        // then
+        DocumentContext dc = JsonPath.parse(response.getBody());
+
+        Integer statusCode = dc.read("$.statusCode");
+        String productTitle = dc.read("$.data.productTitle");
+
+        assertEquals(statusCode, HttpStatus.OK.value());
+        assertEquals(productTitle, "수정된제목");
+    }
 }
