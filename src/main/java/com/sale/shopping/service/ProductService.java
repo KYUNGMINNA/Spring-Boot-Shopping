@@ -15,7 +15,7 @@ public interface ProductService {
 
     List<ProductResponseDTO>  selectAllProduct();
 
-    ProductResponseDTO modifyProduct(ProductRequestDTO productRequestDTO);
+    ProductResponseDTO modifyProduct(Integer id,ProductRequestDTO productRequestDTO);
 
 
 
