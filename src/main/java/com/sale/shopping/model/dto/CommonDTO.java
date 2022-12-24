@@ -1,8 +1,14 @@
 package com.sale.shopping.model.dto;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class CommonDTO<T>{
 
-    private Integer code;
-    private String msg;
-    private T body;
+    private int statusCode;
+    private T data;
+
+
 }
