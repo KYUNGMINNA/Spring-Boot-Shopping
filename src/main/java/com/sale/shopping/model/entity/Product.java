@@ -1,6 +1,7 @@
 package com.sale.shopping.model.entity;
 
 
+import com.sale.shopping.model.dto.ProductRequestDTO;
 import com.sale.shopping.model.dto.ProductResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +40,7 @@ public class Product {
 
     public ProductResponseDTO toDTO(){
         return ProductResponseDTO.builder()
+                .id(id)
                 .productTitle(productTitle)
                 .productImage(productImage)
                 .productPrice(productPrice)
@@ -47,4 +49,10 @@ public class Product {
                 .build();
     }
 
+    public void update(ProductRequestDTO productRequestDTO){
+        this.productTitle = productRequestDTO.getProductTitle();
+        this.productImage = productRequestDTO.getProductImage();
+        this.productPrice = productRequestDTO.getProductPrice();
+        this.productContent = productRequestDTO.getProductContent();
+        this.productCount = productRequestDTO.getProductCount();                         }
 }
