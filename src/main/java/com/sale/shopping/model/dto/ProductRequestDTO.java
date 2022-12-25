@@ -13,7 +13,10 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Builder
 public class ProductRequestDTO {
+
+
     @NotBlank
+
     private String productTitle;
     @NotBlank
     private String productImage;
