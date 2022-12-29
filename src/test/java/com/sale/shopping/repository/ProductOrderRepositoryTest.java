@@ -43,11 +43,11 @@ public class ProductOrderRepositoryTest {
                     .productPrice(987654321)
                     .productCount(1000)
                     .build();
-            productRepository.save(product);
+
 
             ProductOrder productOrder=ProductOrder.builder()
                     .orderCount(i*10)
-                    .product(productRepository.findById(i/2==0?i:i-1).get())
+                    .product(productRepository.save(product))
                     .build();
 
             productOrderRepository.save(productOrder);
@@ -62,9 +62,18 @@ public class ProductOrderRepositoryTest {
     @DisplayName("주문 등록 테스트")
     public void insertTest(){
         //given
+        Product product = Product.builder()
+                .productTitle("제목")
+                .productImage("이미지주소")
+                .productContent("내용")
+                .productPrice(987654321)
+                .productCount(1000)
+                .build();
+
+
         ProductOrder productOrder=ProductOrder.builder()
                                     .orderCount(10)
-                                    .product(productRepository.findById(1).get())
+                                    .product(product)
                                     .build();
 
         //when
@@ -107,10 +116,26 @@ public class ProductOrderRepositoryTest {
     @DisplayName("주문 삭제 테스트")
     public void deleteTest(){
         //given
-        Integer id=1;
+
+        Product product = Product.builder()
+                .productTitle("제목")
+                .productImage("이미지주소")
+                .productContent("내용")
+                .productPrice(987654321)
+                .productCount(1000)
+                .build();
+
+
+        ProductOrder productOrder=ProductOrder.builder()
+                .orderCount(10)
+                .product(product)
+                .build();
+
+
+        productOrderRepository.save(productOrder);
 
         //when
-        productOrderRepository.deleteById(id);
+        productOrderRepository.delete(productOrder);
 
     }
 
@@ -118,26 +143,23 @@ public class ProductOrderRepositoryTest {
     @DisplayName("주문 수정 테스트")
     public void modifyTest(){
         //given
-        Integer id=1;
-
-        log.info("수정 전 조회 "+ productOrderRepository.findById(id).get().getOrderCount());
-
-
+        Integer id=7;
 
         ProductOrder productOrder=ProductOrder.builder()
                 .id(id)
-                .orderCount(7777)
-                .product(productRepository.findById(id).get())
+                .orderCount(111)
+                .product(Product.builder()
+                        .productTitle("제목7")
+                        .productImage("이미지주소")
+                        .productContent("내용")
+                        .productPrice(987654321)
+                        .productCount(1000)
+                        .build())
                 .build();
+        ProductOrder productOrderPS=productOrderRepository.save(productOrder);
 
-        //when
-        ProductOrder productOrderEntity= productOrderRepository.save(productOrder);
+        assertEquals(productOrderPS.getOrderCount(),productOrder.getOrderCount());
 
-        log.info("수정 후 조회 "+ productOrderRepository.findById(id).get().getOrderCount());
-
-
-        //then
-        assertEquals(productOrderEntity.getOrderCount(),productOrder.getOrderCount());
     }
 
 
