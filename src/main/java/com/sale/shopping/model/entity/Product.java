@@ -3,10 +3,7 @@ package com.sale.shopping.model.entity;
 
 import com.sale.shopping.model.dto.ProductRequestDTO;
 import com.sale.shopping.model.dto.ProductResponseDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Builder
 @Entity
+@ToString
 public class Product {
 
     @Id
