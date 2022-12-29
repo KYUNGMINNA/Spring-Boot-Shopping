@@ -45,8 +45,12 @@ public class ProductRepositoryTest {
                     .build();
 
 
-            Product productPS=productRepository.save(product);
+            productRepository.save(product);
         }
+
+        log.info("------------------------------------------------------------------------------------------");
+        log.info("사이즈!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+productRepository.findAll().size());
+        log.info("------------------------------------------------------------------------------------------");
 
 
     }
@@ -55,7 +59,7 @@ public class ProductRepositoryTest {
 
 
     //Auto_increment 초기화
-    @Sql("classpath:db/tableInit.sql")
+    //@Sql("classpath:db/tableInit.sql")
     @Test
     @DisplayName("물건 등록 테스트")
     public void insertTest(){
@@ -78,22 +82,29 @@ public class ProductRepositoryTest {
         assertEquals(productPS.getProductContent(),product.getProductContent());
         assertEquals(productPS.getProductPrice(),product.getProductPrice());
     }
-    @Sql("classpath:db/tableInit.sql")
+    //@Sql("classpath:db/tableInit.sql")
     @Test
     @DisplayName("물건 삭제 테스트")
     public void deleteTest(){
         //given
-        Integer id=1;
+        String productTitle="제목9";
 
-        //when
-        productRepository.deleteById(id);
+
+        /*
+        *   Product테이블의 기본키가 다른 테이블의 FK로 존재하고 있기 때문에, 기본키로 삭제하면 오류가 발생함
+        *   -->그래서 Repository에 새로운 delete메소드를 작성하여 대신 역할을 하게 했음
+        * */
+
+        //whe
+
+        productRepository.deleteByProductTitle(productTitle);
 
         //then
-        assertFalse(productRepository.findById(1).isPresent());
+        assertFalse(productRepository.findByProductTitle(productTitle).isPresent());
 
     }
 
-    @Sql("classpath:db/tableInit.sql")
+    //@Sql("classpath:db/tableInit.sql")
     @Test
     @DisplayName("물건 한건 조회 테스트")
     public void selectOneTest(){
@@ -118,7 +129,7 @@ public class ProductRepositoryTest {
 
     }
 
-    @Sql("classpath:db/tableInit.sql")
+    //@Sql("classpath:db/tableInit.sql")
     @Test
     @DisplayName("물건 전체 조회 테스트")
     public void selectAllTest(){
@@ -137,21 +148,27 @@ public class ProductRepositoryTest {
     }
 
 
-    @Sql("classpath:db/tableInit.sql")
+    //@Sql("classpath:db/tableInit.sql")
     @Test
     @DisplayName("물건 수정 테스트")
     public void modifyTest(){
         //given  -dirty checking
-        Integer id=1;
-        String productTitle="제목1";
+        Integer id=5;
+
+        String productTitle="새로운제목";
+
         Product product=Product.builder()
                 .id(id)
                 .productTitle(productTitle)
+                .productImage("이미지주소")
+                .productContent("내용")
+                .productPrice(987654321)
+                .productCount(1000)
                 .build();
 
 
         //when
-        Product productEntity=productRepository.findById(id).get();
+        Product productEntity=productRepository.save(product);
 
 
         //then
