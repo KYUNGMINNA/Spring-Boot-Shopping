@@ -34,16 +34,18 @@ public class Product {
     @Column(nullable = false)
     private Integer productCount;
 
+    private String productCategory;
+
 
 
     public ProductResponseDTO toDTO(){
         return ProductResponseDTO.builder()
-                .id(id)
                 .productTitle(productTitle)
                 .productImage(productImage)
                 .productPrice(productPrice)
                 .productContent(productContent)
                 .productCount(productCount)
+                .productCategory(productCategory)
                 .build();
     }
 
