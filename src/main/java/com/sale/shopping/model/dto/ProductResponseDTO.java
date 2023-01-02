@@ -1,5 +1,6 @@
 package com.sale.shopping.model.dto;
 
+import com.sale.shopping.model.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,6 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class ProductResponseDTO {
 
-    private Integer id;
 
     @NotBlank
     private String productTitle;
@@ -24,4 +24,20 @@ public class ProductResponseDTO {
     private Integer productPrice;
     @NotBlank
     private Integer productCount;
+
+    private String productCategory;
+
+
+
+     public static ProductResponseDTO fromEntity(Product product){
+         return ProductResponseDTO.builder()
+                 .productTitle(product.getProductTitle())
+                 .productImage(product.getProductImage())
+                 .productPrice(product.getProductPrice())
+                 .productContent(product.getProductContent())
+                 .productCount(product.getProductCount())
+                 .productCategory(product.getProductCategory())
+                 .build();
+
+     }
 }
