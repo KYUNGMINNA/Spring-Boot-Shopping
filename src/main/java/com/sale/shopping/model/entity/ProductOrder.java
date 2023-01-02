@@ -26,6 +26,24 @@ public class ProductOrder {
     @JoinColumn(name="productId")
     private Product product;
 
+    //주문자
+    private String productOrderName;
+
+    //주소
+    private String productOrderAddress;
+
+    private String productOrderAddress1;
+
+    //상세 주소
+    private String productOrderAddress2;
+
+    //연락처
+    private String productOrderPhone;
+
+    //주문 번호
+    private String productOrderNumber;
+
+
 
     public ProductOrderResponseDTO toDTO(){
         return ProductOrderResponseDTO.builder()
