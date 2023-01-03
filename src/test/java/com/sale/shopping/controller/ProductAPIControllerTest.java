@@ -60,7 +60,7 @@ public class ProductAPIControllerTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
     }
 
-    @BeforeEach
+   /* @BeforeEach
     public void 데이터준비() {
         for(int i=1;i<10;i++){
             Product product=Product.builder()
@@ -72,6 +72,45 @@ public class ProductAPIControllerTest {
                     .build();
             productRepository.save(product);
         }
+    }*/
+
+    @Test
+    public void testset(){
+
+        for(int i=1;i<=30;i++){
+            Product product=Product.builder()
+                    .productTitle("제목"+i)
+                    .productImage("salad"+i)
+                    .productContent("내용"+i)
+                    .productPrice(7777)
+                    .productCount(1000+i)
+                    .productCategory("샐러드")
+                    .build();
+            productRepository.save(product);
+        }
+        for(int i=101;i<=130;i++){
+            Product product=Product.builder()
+                    .productTitle("제목"+i)
+                    .productImage("lunchbox"+i)
+                    .productContent("내용"+i)
+                    .productPrice(3333)
+                    .productCount(100+i)
+                    .productCategory("도시락")
+                    .build();
+            productRepository.save(product);
+        }
+        for(int i=201;i<=230;i++){
+            Product product=Product.builder()
+                    .productTitle("제목"+i)
+                    .productImage("convenience"+i)
+                    .productContent("내용"+i)
+                    .productPrice(99999)
+                    .productCount(300+i)
+                    .productCategory("간편식")
+                    .build();
+            productRepository.save(product);
+        }
+        log.info("데이터 등록 완료 ");
     }
 
 
