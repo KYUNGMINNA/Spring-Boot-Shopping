@@ -39,7 +39,13 @@ public class ProductOrderRequestDTO {
 
     public ProductOrder toEntity(){
         return ProductOrder.builder()
-                .orderCount(productOrderCount)
+                .productOrderCount(productOrderCount)
+                .productOrderName(productOrderName)
+                .productOrderAddress(productOrderAddress)
+                .productOrderAddress1(productOrderAddress1)
+                .productOrderAddress2(productOrderAddress2)
+                .productOrderPhone(productOrderPhone)
+                .productOrderNumber(productOrderNumber)
                 .product(product)
                 .build();
     }
