@@ -18,4 +18,20 @@ public class ProductOrderResponseDTO {
 
     private Integer productOrderCount;
     private Product product;
+
+    private String productOrderName;
+
+    //주소
+    private String productOrderAddress;
+
+    private String productOrderAddress1;
+
+    //상세 주소
+    private String productOrderAddress2;
+
+    //연락처
+    private String productOrderPhone;
+
+    //주문 번호
+    private String productOrderNumber;
 }
