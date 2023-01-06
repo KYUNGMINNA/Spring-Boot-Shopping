@@ -2,6 +2,8 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 
 
 <!DOCTYPE html>
@@ -87,12 +89,12 @@
             </a>
 
 
-            <div style="">
+      <%--      <div style="">
             <input type="text" style="background-color:#FCFAEC; border-color: #87AB7B;  width: 300px; height: 30px; position: relative; left:10rem; bottom: 3rem; font-size: 1rem;" >
             <a href="">
                 <span style=" position: relative; left:1rem; bottom: 2rem;">?</span>
             </a>
-            </div>
+            </div>--%>
 
 
 
@@ -100,7 +102,7 @@
 
         </div>
         <div>
-            <a href="" style="position: absolute; right: 3rem; top: 5rem;">
+            <a href="/product/mypage" style="position: absolute; right: 3rem; top: 5rem;">
                 <img src="/image/basket.svg" alt="" width="60px;" height="40px;">
             </a>
         </div>
