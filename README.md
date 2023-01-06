@@ -85,7 +85,7 @@
 
 
 <h3>테스트 파일</h3>
-<img src="(https://user-images.githubusercontent.com/62867182/211001400-c8b19e35-3378-4d0a-a39f-23b895786878.PNG" alt="" >
+<img src="https://user-images.githubusercontent.com/62867182/211001400-c8b19e35-3378-4d0a-a39f-23b895786878.PNG" alt="" >
 
 
 
