@@ -6,6 +6,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -52,4 +53,21 @@ public class GlobalExceptionHandler {
 
 
     }
+
+    //지원하지 않는 요청 메서드(POST URL인데 , GET으로 요청시 )
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<Object> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e){
+        return new ResponseEntity<>(CommonDTO.builder().statusCode(HttpStatus.BAD_REQUEST.value()).data(e.getMessage()).build(),HttpStatus.BAD_REQUEST);
+
+
+    }
+
+
+    @ExceptionHandler(StringIndexOutOfBoundsException.class)
+    public ResponseEntity<Object> stringIndexOutOfBoundsException(StringIndexOutOfBoundsException e){
+        return new ResponseEntity<>(CommonDTO.builder().statusCode(HttpStatus.BAD_REQUEST.value()).data(e.getMessage()).build(),HttpStatus.BAD_REQUEST);
+
+
+    }
+
 }
