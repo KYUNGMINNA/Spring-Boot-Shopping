@@ -36,7 +36,7 @@
             <span style="font-weight: bolder; font-size: 2rem;">선택 수량 : <%= Integer.valueOf(request.getParameter("count"))%></span>
             </div>
 
-            <div style="text-align: left; position:relative; left: 19rem; margin-bottom: 2rem;">  <%--<%= Integer.valueOf(request.getParameter("count"))%> --%>
+            <div style="text-align: left; position:relative; left: 2rem; margin-bottom: 2rem;">  <%--<%= Integer.valueOf(request.getParameter("count"))%> --%>
 
                 <span style="font-weight: bolder; font-size: 2rem;" id="orderPrice">
 
