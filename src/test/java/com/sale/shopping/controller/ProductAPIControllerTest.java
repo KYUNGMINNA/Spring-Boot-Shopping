@@ -74,10 +74,99 @@ public class ProductAPIControllerTest {
         }
     }*/
 
+    /*
+insert into Product(productCategory, productContent, productCount, productImage,
+                    productPrice, productTitle)
+values
+('샐러드','내용',100,'salad1',8300,'닭가슴살 샐러드'),
+('샐러드','내용',100,'salad2',9000,'닭가슴살 비엔나 샐러드'),
+('샐러드','내용',100,'salad3',9000,'크래미 샐러드'),
+('샐러드','내용',100,'salad4',8100,'치즈 샐러드'),
+('샐러드','내용',100,'salad5',8700,'닭가슴살 술붗갈비맛 샐러드'),
+('샐러드','내용',100,'salad6',9600,'닭가슴살 옥수수톡 샐러드'),
+('샐러드','내용',100,'salad7',9700,'닭가슴살 깻잎가득 샐러드'),
+('샐러드','내용',100,'salad8',9300,'파스타 샐러드'),
+('샐러드','내용',100,'salad9',9200,'훈제오리 샐러드'),
+('샐러드','내용',100,'salad10',8900,'그린 샐러드'),
+('샐러드','내용',100,'salad11',9000,'채소만 베이직 믹스 샐러드'),
+('샐러드','내용',100,'salad12',9900,'채소만 베이직 플러스 믹스 샐러드'),
+('샐러드','내용',100,'salad13',8700,'채소만 레드비트 믹스 샐러드'),
+('샐러드','내용',100,'salad14',9200,'채소만 루꼴라 믹스 샐러드'),
+('샐러드','내용',100,'salad15',9300,'채소만 비타민 믹스 샐러드'),
+('샐러드','내용',100,'salad16',9400,'멕시칸 타코 샐러드'),
+('샐러드','내용',100,'salad17',10700,'갈릭페퍼 로스트 닭다리살 샐러드'),
+('샐러드','내용',100,'salad18',1100,'레드칠리 로스트 닭가슴살 샐러드'),
+('샐러드','내용',100,'salad19',10300,'이탈리안 더블 햄 샐러드'),
+('샐러드','내용',100,'salad20',10200,'페퍼콘 닭가슴살 샐러드');
+
+insert Product(productCategory, productContent, productCount, productImage, productPrice, productTitle)
+values
+('도시락','내용',200, 'lunchbox1',6100,'다섯가지나물밥 불고기 오믈렛'),
+('도시락','내용',200, 'lunchbox2',6200, '곤드레 나물밥'),
+('도시락','내용',200, 'lunchbox3',6300, '고구마밥'),
+('도시락','내용',200, 'lunchbox4',6400, '계란 새우볶음밥'),
+('도시락','내용',200, 'lunchbox5',6200, '닭가슴살 볶음밥'),
+('도시락','내용',200, 'lunchbox6',6000, '탄두리 닭가슴살 현미밥'),
+('도시락','내용',200, 'lunchbox7',6000, '취나물밥 매콤 제육볶음'),
+('도시락','내용',200, 'lunchbox8',5900, '근채 영양밥 닭가슴살'),
+('도시락','내용',200, 'lunchbox9',5700, '시래기 보리밥 불고기'),
+('도시락','내용',200, 'lunchbox10',5800, '나시고랭 닭가슴살 소시지'),
+('도시락','내용',200, 'lunchbox11',5800, '빠에야 볶음밥'),
+('도시락','내용',200, 'lunchbox12',5900, '야채 볶음밥'),
+('도시락','내용',200, 'lunchbox13',6000, '김치 곤약 볶음밥'),
+('도시락','내용',200, 'lunchbox14',6200, '계란 곤약 볶음밥 함박 스테이크'),
+('도시락','내용',200, 'lunchbox15',6100, '계란 곤약 볶음밥 핫스테이크'),
+('도시락','내용',200, 'lunchbox16',6200, '퀴노야 곤약밥'),
+('도시락','내용',200, 'lunchbox17',6100, '곤드레 곤약밥'),
+('도시락','내용',200, 'lunchbox18',5900, '귀리 곤약밥'),
+('도시락','내용',200, 'lunchbox19',6000, '미니컵밥 백김치멸치'),
+('도시락','내용',200, 'lunchbox20',5500, '미니컵밥 잡채 덮밥');
+
+
+
+
+insert Product(productCategory, productContent, productCount,
+               productImage, productPrice, productTitle)
+values
+('간편식','내용',500,'convenience1',4000,'닭가슴살 만두 오리지널'),
+('간편식','내용',500,'convenience2',4000,'닭가슴살 만두 매콤김치'),
+('간편식','내용',500,'convenience3',3600,'닭가슴살 슬라이스 갈비맛'),
+('간편식','내용',500,'convenience4',3600,'닭가슴살 슬라이스 양념치킨맛'),
+('간편식','내용',500,'convenience5',3600,'닭가슴살 슬라이스 커리맛'),
+('간편식','내용',500,'convenience6',3600,'닭가슴살 소시지 오리지널'),
+('간편식','내용',500,'convenience7',3600,'닭가슴살 소시지 구운마늘'),
+('간편식','내용',500,'convenience8',3600,'닭가슴살 소시지 매콤치즈'),
+('간편식','내용',500,'convenience9',3500,'그릴 닭가슴살 숫불갈비맛'),
+('간편식','내용',500,'convenience10',3500,'그릴 닭가슴볼 옥수수톡'),
+('간편식','내용',500,'convenience11',3500,'그릴 닭가슴살 깻잎가득'),
+('간편식','내용',500,'convenience12',3500,'포캣 리얼 요거트'),
+('간편식','내용',500,'convenience13',3500,'한입 밤 고구마'),
+('간편식','내용',500,'convenience14',4000,'포켓 아이스 홍시');
+
+
+
+     */
+
+
+
+
     @Test
     public void testset(){
 
-        for(int i=1;i<=30;i++){
+            Product product=Product.builder()
+                    .productTitle("닭가슴살 샐러드")
+                    .productPrice(7777)
+                    .productImage("salad1")
+                    .productContent("내용")
+                    .productCount(1000)
+                    .productCategory("샐러드")
+                    .build();
+            productRepository.save(product);
+
+
+
+
+/*        for(int i=1;i<=30;i++){
             Product product=Product.builder()
                     .productTitle("제목"+i)
                     .productImage("salad"+i)
@@ -109,8 +198,8 @@ public class ProductAPIControllerTest {
                     .productCategory("간편식")
                     .build();
             productRepository.save(product);
-        }
-        log.info("데이터 등록 완료 ");
+        }*/
+
     }
 
 
