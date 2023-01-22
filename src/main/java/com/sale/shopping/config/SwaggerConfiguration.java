@@ -30,9 +30,9 @@ public class SwaggerConfiguration {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("API Test with Swaager")
-                .version("설명")
-                .description("0.0.0") //maven 1.0.0 라고 수정해놨기 때문
+                .title("Shopping Mall API")
+                .version("1")
+                .description("1.0.0") //maven 1.0.0 라고 수정해놨기 때문
                 .build();
     }
 }
