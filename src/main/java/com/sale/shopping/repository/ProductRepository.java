@@ -10,19 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository  extends JpaRepository<Product,Integer> {
-
-
     Optional<Product> findByProductTitle(String productTitle);
 
     void deleteByProductTitle(String productTitle);
 
-
     Page<Product> findAllByProductCategory(String productCategory, Pageable pageable);
 
-
     Optional<Product> findByProductCategoryAndProductTitle(String productCategory,String productTitle);
-
-
 
     List<?> findTop4ByProductCategoryOrderByIdDesc(String productCategory);
 }
