@@ -6,7 +6,6 @@ import com.sale.shopping.model.dto.ProductResponseDTO;
 
 import com.sale.shopping.model.entity.Product;
 import com.sale.shopping.service.ProductService;
-import com.sale.shopping.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,53 +24,41 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class ProductAPIController {
-
     private final ProductService productService;
-
 
     //select
     @GetMapping("/product")
     public ResponseEntity<Object> SelectAllProductAPI(String productCategory, Pageable pageable) {
-        Page<Product> productResponseDTOList = productService.selectAllProduct(productCategory,pageable);
+        Page<Product> productResponseDTOList = productService.selectAllProduct(productCategory, pageable);
         return new ResponseEntity<>(CommonDTO.builder().statusCode(HttpStatus.OK.value()).data(productResponseDTOList).build(), HttpStatus.OK);
     }
 
     @GetMapping("/product/productImage={productImage}")
     public ResponseEntity<byte[]> getProductImg(@PathVariable String productImage) {
 
-        String folderName="";
-        if(productImage.charAt(0)=='c'){
-            folderName="convenience\\";
-        }else if(productImage.charAt(0)=='l'){
-            folderName="lunchbox\\";
-        }else  if(productImage.charAt(0)=='s'){
-            folderName="salad\\";
+        String folderName = "";
+        if (productImage.charAt(0) == 'c') {
+            folderName = "convenience\\";
+        } else if (productImage.charAt(0) == 'l') {
+            folderName = "lunchbox\\";
+        } else if (productImage.charAt(0) == 's') {
+            folderName = "salad\\";
         }
-
-        ResponseEntity<byte[]> result=null;
+        ResponseEntity<byte[]> result = null;
 
         try {
-            File file=new File("C:\\shopping\\image\\"+folderName+productImage+".jpg");
+            File file = new File("C:\\shopping\\image\\" + folderName + productImage + ".jpg");
 
 
-
-            HttpHeaders headers=new HttpHeaders();
+            HttpHeaders headers = new HttpHeaders();
 
             headers.add("Content-Type", Files.probeContentType(file.toPath()));
-            result=new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),headers,HttpStatus.OK);
-        }
-        catch (IOException e) {
+            result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+        } catch (IOException e) {
             e.printStackTrace();
-        } //
+        }
         return result;
-
-
     }
-
-
-
-
-
 
     @GetMapping("/product/all")
     public ResponseEntity<Object> selectLimitProduct(String productCategory) {
@@ -82,12 +68,10 @@ public class ProductAPIController {
 
     //select
     @GetMapping("/product/one")
-    public ResponseEntity<Object> SelectOneProductAPI(@PathVariable String productCategory,String productTitle) {
-        ProductResponseDTO productResponseDTO = productService.selectOneProduct(productCategory,productTitle);
+    public ResponseEntity<Object> SelectOneProductAPI(@PathVariable String productCategory, String productTitle) {
+        ProductResponseDTO productResponseDTO = productService.selectOneProduct(productCategory, productTitle);
         return new ResponseEntity<>(CommonDTO.builder().statusCode(HttpStatus.OK.value()).data(productResponseDTO).build(), HttpStatus.OK);
-
     }
-
 
 
     //insert
@@ -109,7 +93,6 @@ public class ProductAPIController {
     public ResponseEntity<Object> modifyProductAPI(@PathVariable Integer id, @RequestBody ProductRequestDTO productRequestDTO) {
         ProductResponseDTO productResponseDTO = productService.modifyProduct(id, productRequestDTO);
         return new ResponseEntity<>(CommonDTO.builder().statusCode(HttpStatus.OK.value()).data(productResponseDTO).build(), HttpStatus.OK);
-
     }
 
 
