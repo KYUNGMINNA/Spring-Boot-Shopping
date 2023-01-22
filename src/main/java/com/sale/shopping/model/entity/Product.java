@@ -18,27 +18,19 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(nullable = false)
     private String productTitle;
-
     @Column(nullable = false)
     private String productImage;
-
     @Column(nullable = false)
     private Integer productPrice;
-
     @Column(nullable = false)
     private String productContent;
-
     @Column(nullable = false)
     private Integer productCount;
-
     private String productCategory;
 
-
-
-    public ProductResponseDTO toDTO(){
+    public ProductResponseDTO toDTO() {
         return ProductResponseDTO.builder()
                 .productTitle(productTitle)
                 .productImage(productImage)
@@ -49,10 +41,15 @@ public class Product {
                 .build();
     }
 
-    public void update(ProductRequestDTO productRequestDTO){
+    public void update(ProductRequestDTO productRequestDTO) {
         this.productTitle = productRequestDTO.getProductTitle();
         this.productImage = productRequestDTO.getProductImage();
         this.productPrice = productRequestDTO.getProductPrice();
         this.productContent = productRequestDTO.getProductContent();
-        this.productCount = productRequestDTO.getProductCount();                         }
+        this.productCount = productRequestDTO.getProductCount();
+    }
+
+    public void purchase(Integer productOrderCount) {
+        this.productCount -= productOrderCount;
+    }
 }
