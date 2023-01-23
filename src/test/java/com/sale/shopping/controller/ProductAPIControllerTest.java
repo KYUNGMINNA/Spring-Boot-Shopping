@@ -10,6 +10,7 @@ import com.sale.shopping.model.dto.ProductResponseDTO;
 import com.sale.shopping.model.entity.Product;
 import com.sale.shopping.repository.ProductRepository;
 import com.sale.shopping.service.ProductServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -38,9 +39,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Slf4j
 public class ProductAPIControllerTest {
 
-    private final Logger log = LoggerFactory.getLogger(ProductAPIControllerTest.class);
 
     @Autowired
     private ProductRepository productRepository;

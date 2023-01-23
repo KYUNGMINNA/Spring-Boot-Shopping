@@ -9,6 +9,7 @@ import com.sale.shopping.model.entity.Product;
 import com.sale.shopping.model.entity.ProductOrder;
 import com.sale.shopping.repository.ProductOrderRepository;
 import com.sale.shopping.repository.ProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,9 +31,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@Slf4j
 public class ProductOrderServiceTest {
 
-    private final Logger log= LoggerFactory.getLogger(ProductOrderServiceTest.class);
 
 
     @InjectMocks //인터페이스 보다는 객체를 리턴해야함  -->인터페이스 쓰려면 , 해당 인터페이스를 구현한 클래스
@@ -69,7 +70,7 @@ public class ProductOrderServiceTest {
         ProductOrder productOrderPS=productOrderRepository.save(productOrderRequestDTORequestDTO.toEntity());
 
         //then
-        assertEquals(productOrderPS.getOrderCount(),productOrderRequestDTORequestDTO.getProductOrderCount());
+        assertEquals(productOrderPS.getProductOrderCount(),productOrderRequestDTORequestDTO.getProductOrderCount());
         assertEquals(productOrderPS.getProduct(),productOrderRequestDTORequestDTO.getProduct());
 
     }
@@ -120,7 +121,7 @@ public class ProductOrderServiceTest {
                 .build();
 
         ProductOrder productOrder=ProductOrder.builder()
-                .orderCount(50)
+                .productOrderCount(50)
                 .product(productRequestDTO.toEntity())
                 .build();
 
@@ -135,7 +136,7 @@ public class ProductOrderServiceTest {
         ProductOrderResponseDTO productOrderResponseDTO=productOrderRepository.findById(id).get().toDTO();
 
         //then
-        assertEquals(productOrderResponseDTO.getProductOrderCount(),productOrder.getOrderCount());
+        assertEquals(productOrderResponseDTO.getProductOrderCount(),productOrder.getProductOrderCount());
         assertEquals(productOrderResponseDTO.getProduct(),productOrder.getProduct());
     }
     @Test
@@ -155,12 +156,12 @@ public class ProductOrderServiceTest {
         List<ProductOrder> productOrderList = new ArrayList<>();
 
         productOrderList.add(ProductOrder.builder()
-                .orderCount(50)
+                .productOrderCount(50)
                 .product(productRequestDTO.toEntity())
                 .build());
 
         productOrderList.add(ProductOrder.builder()
-                .orderCount(200)
+                .productOrderCount(200)
                 .product(productRequestDTO.toEntity())
                 .build());
 
@@ -201,7 +202,7 @@ public class ProductOrderServiceTest {
 
         //stub
         ProductOrder productOrder=ProductOrder.builder()
-                .orderCount(newCount)
+                .productOrderCount(newCount)
                 .product(productRequestDTO.toEntity())
                 .build();
 
@@ -209,11 +210,11 @@ public class ProductOrderServiceTest {
         ProductOrder productOrderPS=productOrderRepository.save(productOrder);
 
         //when
-        productOrderPS=ProductOrder.builder().orderCount(newCount).build();
+        productOrderPS=ProductOrder.builder().productOrderCount(newCount).build();
 
 
         //then
-        assertEquals(productOrderPS.getOrderCount(),newCount);
+        assertEquals(productOrderPS.getProductOrderCount(),newCount);
 
 
 

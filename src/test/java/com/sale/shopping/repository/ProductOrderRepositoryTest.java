@@ -4,6 +4,7 @@ package com.sale.shopping.repository;
 
 import com.sale.shopping.model.entity.Product;
 import com.sale.shopping.model.entity.ProductOrder;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,9 +22,9 @@ import static org.junit.jupiter.api.Assertions.*;
 //실제 DB로 테스트 하겠다.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
+@Slf4j
 public class ProductOrderRepositoryTest {
 
-    private final Logger log = LoggerFactory.getLogger(ProductOrderRepositoryTest.class);
 
 
     @Autowired
@@ -46,7 +47,7 @@ public class ProductOrderRepositoryTest {
 
 
             ProductOrder productOrder=ProductOrder.builder()
-                    .orderCount(i*10)
+                    .productOrderCount(i*10)
                     .product(productRepository.save(product))
                     .build();
 
@@ -72,7 +73,7 @@ public class ProductOrderRepositoryTest {
 
 
         ProductOrder productOrder=ProductOrder.builder()
-                                    .orderCount(10)
+                                    .productOrderCount(10)
                                     .product(product)
                                     .build();
 
@@ -127,7 +128,7 @@ public class ProductOrderRepositoryTest {
 
 
         ProductOrder productOrder=ProductOrder.builder()
-                .orderCount(10)
+                .productOrderCount(10)
                 .product(product)
                 .build();
 
@@ -147,7 +148,7 @@ public class ProductOrderRepositoryTest {
 
         ProductOrder productOrder=ProductOrder.builder()
                 .id(id)
-                .orderCount(111)
+                .productOrderCount(111)
                 .product(Product.builder()
                         .productTitle("제목7")
                         .productImage("이미지주소")
@@ -158,7 +159,7 @@ public class ProductOrderRepositoryTest {
                 .build();
         ProductOrder productOrderPS=productOrderRepository.save(productOrder);
 
-        assertEquals(productOrderPS.getOrderCount(),productOrder.getOrderCount());
+        assertEquals(productOrderPS.getProductOrderCount(),productOrder.getProductOrderCount());
 
     }
 

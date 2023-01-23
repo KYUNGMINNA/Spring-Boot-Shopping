@@ -11,6 +11,7 @@ import com.sale.shopping.model.entity.ProductOrder;
 import com.sale.shopping.repository.ProductOrderRepository;
 import com.sale.shopping.repository.ProductRepository;
 import com.sale.shopping.service.ProductServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,9 +26,9 @@ import org.springframework.http.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Slf4j
 public class ProductOrderAPIControllerTest {
 
-    private final Logger log = LoggerFactory.getLogger(ProductOrderAPIControllerTest.class);
 
     @Autowired
     private ProductOrderRepository productOrderRepository;
@@ -47,7 +48,7 @@ public class ProductOrderAPIControllerTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
     }
 
-    @BeforeEach
+  /*  @BeforeEach
     public void 데이터준비() {
         for(int i=1;i<10;i++) {
             Product product = Product.builder()
@@ -66,7 +67,7 @@ public class ProductOrderAPIControllerTest {
 
             productOrderRepository.save(productOrder);
         }
-    }
+    }*/
 
 
     @Test

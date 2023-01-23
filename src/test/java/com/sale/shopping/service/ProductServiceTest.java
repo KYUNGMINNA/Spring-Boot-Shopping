@@ -5,6 +5,7 @@ import com.sale.shopping.model.dto.ProductRequestDTO;
 import com.sale.shopping.model.dto.ProductResponseDTO;
 import com.sale.shopping.model.entity.Product;
 import com.sale.shopping.repository.ProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@Slf4j
 public class ProductServiceTest {
 
     private final Logger log= LoggerFactory.getLogger(ProductServiceTest.class);

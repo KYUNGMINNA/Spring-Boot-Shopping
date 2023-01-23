@@ -4,6 +4,7 @@ package com.sale.shopping.repository;
 import com.mysql.cj.log.LogFactory;
 import com.sale.shopping.model.entity.Product;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 //실제 DB로 테스트 하겠다.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
+@Slf4j
 public class ProductRepositoryTest {
 
-    private final Logger log = LoggerFactory.getLogger(ProductRepositoryTest.class);
 
 
     @Autowired
