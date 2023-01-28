@@ -35,6 +35,7 @@
             </div>
 
             <div style="text-align: left; position:relative; left: 2rem; margin-bottom: 2rem;">
+                <span style="font-weight: bolder; font-size: 2rem;">가격 :<fmt:formatNumber pattern="###,###,###" value="${oneProduct.data.productPrice}" />원</span>
             </div>
 
             <div style="text-align: left; position:relative; left: 2rem; margin-bottom: 2rem;">
